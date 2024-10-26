@@ -1,6 +1,6 @@
 import regex as re
 
-from pyipr_sensor_lib.pyipr_sensor_lib.ipr_parser import *
+from pyipr_sensor_lib.ipr_parser import *
 
 class IPRSensorDecoder:
 
