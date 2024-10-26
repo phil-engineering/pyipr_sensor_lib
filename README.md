@@ -3,7 +3,7 @@
 Python library for IPR strain sensor.
 
 ## Getting Started
-The code below can be used as a first example to explore the sensor capabilities.
+The code below can be used as a first example to explore the sensor capabilities. Use the file ```example.py``` to get started.
 ```python
 from pyipr_sensor_lib.ipr_sensor_decoder import IPRSensorDecoder
 from pyipr_sensor_lib.ipr_serial_interface import IPRSerialInterface
