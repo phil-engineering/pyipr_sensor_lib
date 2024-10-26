@@ -22,7 +22,7 @@ while True:
     ipr_obj.analyse_packet(obj.serial_ipr_read_telegram())
 ```
 Output example:
-```python
+```
 STRAIN X: -2674.73 uStrain ; STRAIN Y: 1030.04 uStrain ; STRAIN Z: 1784.62 uStrain
 STRAIN P1: 1410.99 uStrain ; STRAIN P2: 1599.27 uStrain ; STRAIN ANGLE: -42.33 degrees
 STRAIN X: 2951.65 uStrain ; STRAIN Y: 1029.30 uStrain ; STRAIN Z: 2347.25 uStrain
@@ -40,7 +40,7 @@ Get the sensor system status:
 print(obj.serial_ipr_get_system_status())
 ```
 Output:
-```python
+```
 Humidty      : 48.0 %
 Pressure     : 999.2 HPa
 Temperature  : +21.1 C
