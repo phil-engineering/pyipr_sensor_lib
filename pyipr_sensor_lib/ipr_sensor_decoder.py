@@ -13,7 +13,8 @@ class IPRSensorDecoder:
     def decode_from_binary_file(self, filepath, filename):
         with open(filepath + filename, 'rb') as fh:
             content = fh.read().hex()
-        self.set_data(re.split('08', content)[1:])
+        for _data in re.split('08', content)[1:]:
+            self.analyse_packet(_data)
 
     def analyse_packet(self, packet):
         self.ipr_parser_obj = IPRParser(packet)

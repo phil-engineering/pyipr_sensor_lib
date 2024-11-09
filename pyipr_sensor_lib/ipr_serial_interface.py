@@ -79,7 +79,8 @@ class IPRSerialInterface:
     def serial_ipr_get_sensor_gain(self):
         # Check if the sensor sends binary data. If so, stop it before sending commands
         self.serial_ipr_check_if_data_reading()
-        self._serial_port_obj.write(format_command("transfer"))
+        # Send command to sensor to get the gain/multiplier saved on the sensor's internal memory
+        self._serial_port_obj.write(format_command("transfer"))  # Query the sensor gain
 
         # Read all the data from the serial port, until character '>'
         _telegram = self.serial_ipr_read_text_from_sensor()
