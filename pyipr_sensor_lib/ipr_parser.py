@@ -1,9 +1,9 @@
 from array import array
 
 class IPRParser:
-    MIN_PACKET_LENGTH_STRAIN = 27
-    MIN_PACKET_LENGTH_ENVIRONMENT = 1
-    MIN_PACKET_LENGTH_ACCELERATION = 20
+    MIN_PACKET_LENGTH_STRAIN = 27           # Strain telegram should be at least 14 bytes
+    MIN_PACKET_LENGTH_ENVIRONMENT = 1       # Environment telegram should be at least 9 bytes
+    MIN_PACKET_LENGTH_ACCELERATION = 20     # Acceleration telegram should be at least 9 bytes
 
     def __init__(self, telegram):
         self._byte_data = list()
@@ -14,12 +14,18 @@ class IPRParser:
         self.raw_header = array('f', [0, 0, 0, 0])
         self.packet_type = None
 
+        # Strain X, Y, Z, P1, P2, Angle
         self.raw_strain = array('f', [0, 0, 0, 0, 0, 0])
+        # Vbat, Pressure, Humidity, Temperature
         self.raw_env = array('f', [0, 0, 0, 0])
+        # Acceleration X, Y, Z
         self.raw_acc = array('f', [0, 0, 0])
 
+        # Scaled strain X, Y, Z, P1, P2, Angle
         self.scaled_strain = array('f', [0, 0, 0, 0, 0, 0])
+        # Scaled Vbat, Pressure, Humidity, Temperature
         self.scaled_env = array('f', [0, 0, 0, 0])
+        # Scaled acceleration X, Y, Z
         self.scaled_acc = array('f', [0, 0, 0])
         
         self.telegram = telegram
@@ -42,6 +48,7 @@ class IPRParser:
     
     def parser_hex_to_byte(self, _data, _length):
         for i in range(0, _length, 2):
+            # Hex uses 2 bytes, so loops each 2 bytes
             self._byte_data.append(_data[i:i+2])
 
     def parser_check_telegram_validity(self, telegram):
@@ -66,9 +73,11 @@ class IPRParser:
         return _is_valid
 
     def parser_get_id(self):
+        # Get the telegram ID contained in the first 2 bits of BYTE 0
         self.raw_header[0] = int(self._byte_data[0], 16) & 0x03
         return self.raw_header[0]
 
+    # Based on the telegram ID, set the name associated with the ID
     def parser_get_id_name(self):
         if self.parser_get_id() == 0x00:
             self.packet_type = "STRAIN"
@@ -81,6 +90,7 @@ class IPRParser:
         return self.packet_type
 
     def parser_get_id_crc(self):
+        # Get the telegram ID-CRC contained in the 3rd bit of BYTE 0
         self.raw_header[1] = (int(self._byte_data[0], 16) & 0x04) >> 2
         return self.raw_header[1]
 

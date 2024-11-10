@@ -1,5 +1,6 @@
 import serial
 
+# Use the DEBUG_MODE to True to display additional information in the console
 DEBUG_MODE = False
 DEBUG_SERIAL_RECEIVE = False
 
@@ -144,28 +145,38 @@ class IPRSerialInterface:
     def serial_ipr_read_telegram(self):
         _start_char_found = False
         _telegram = list()
+        # Look for the start character (SOF: Start Of Frame)
         while not _start_char_found:
+            # Read one byte at the time, and convert to Hexadecimal
             data = self.serial_read_binary().hex()
+            # Check if the character is the SOF, if so exit the while() loop
             if data == '08':
                 _start_char_found = True
             else:
+                # Add each byte to the telegram
                 _telegram.append(data)
+        # Return the full telegram in Hexadecimal
         return ''.join(_telegram)
 
     def serial_ipr_read_text_from_sensor(self):
         _stop_character_found = False
         _telegram = list()
+        # When the sensor is not in the binary datastream mode, it has a user-friendly menu interface
+        # This loop is to parse the menu-like characters, and keep the data only
         while not _stop_character_found:
+            # Read one byte at the time
             data = self.serial_read_binary()
+            # Check if the end character is found. This means that the menu is done displaying the data
             if data == b'>':
                 _stop_character_found = True
             else:
                 if data not in (b'\n', b'\r', b'$'):
+                    # Add each valid byte to the telegram
                     _telegram.append(data.decode("utf-8"))
                 elif data == b'\r':
                     if len(_telegram) >= 1:
                         if _telegram[-1] != "\n":
                             _telegram.append("\n")
-
+        # Return the full telegram in Hexadecimal
         return _telegram
 
