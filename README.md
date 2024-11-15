@@ -4,7 +4,7 @@ Python library for IPR strain sensor.
 
 ## Getting Started
 The code below can be used as a first example to explore the sensor capabilities. Use the file ```example_02_plot_data_from_file.py``` in the Examples folder to get started.
-
+The first part of the example will create a decoder object and read the binary file provided. The data is parsed into a list of packets ready to be processed. 
 ```python
 # Read the entire file as a single byte string
 binary_file_path = "./"
@@ -13,7 +13,9 @@ binary_file_name = 'binary_data_example_01.bin'
 # Create an object to parse the data from the sensor or a binary file
 ipr_obj = IPRSensorDecoder()
 telegram_list = ipr_obj.load_from_binary_file(binary_file_path, binary_file_name)
-
+```
+The second part of the example will parse each packets if valid, and scale the data to save it in lists.
+```python
 strain_list = list([list(),list(),list()])
 acceleration_list = list([list(),list(),list()])
 environment_list = list([list(),list(),list(),list()])

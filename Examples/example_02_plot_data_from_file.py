@@ -1,5 +1,4 @@
 from pyipr_sensor_lib.ipr_sensor_decoder import IPRSensorDecoder
-from pyipr_sensor_lib.ipr_serial_interface import IPRSerialInterface
 
 # Matplotlib is only used at this level to plot the data. The IPR library has no dependence on Matplotlib
 import matplotlib.pyplot as plt
