@@ -1,0 +1,5 @@
+pyipr_sensor_lib~=0.1.0
+setuptools~=75.2.0
+matplotlib~=3.9.2
+regex~=2024.9.11
+pyserial~=3.5
