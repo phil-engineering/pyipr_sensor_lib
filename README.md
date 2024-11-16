@@ -39,7 +39,9 @@ for _telegram in telegram_list:
 ```
 Using Matplotlib, the strain, acceleration, or environment values can be plotted. Below is an example of strain XYZ being plotted:
 <!-- ![Graph](Examples/example_02_strain_graph.png ) -->
-<img src="Examples/example_02_strain_graph.png" alt="Strain graphs using binary_data_example_01.bin" width="600">
+<p align="center">
+  <img src="Examples/example_02_strain_graph.png" alt="Strain graphs using binary_data_example_01.bin" width="600" >
+</p>
 
 <!---
 ```python
