@@ -28,21 +28,21 @@ class IPRParser:
 
         # Header information arrays
         # [ID, ID_CRC, Sequence, Timestamp]
-        self.raw_header = array('f', [0, 0, 0, 0])
+        self.raw_header = array('f', [-1, -1, -1, -1])
         self.packet_type = None
 
         # Raw measurement arrays
         # Strain measurements [X, Y, Z, Principal1, Principal2, Angle]
-        self.raw_strain = array('f', [0, 0, 0, 0, 0, 0])
+        self.raw_strain = array('f', [-1, -1, -1, -1, -1, -1])
         # Environmental measurements [Battery Voltage, Pressure, Humidity, Temperature]
-        self.raw_env = array('f', [0, 0, 0, 0])
+        self.raw_env = array('f', [-1, -1, -1, -1])
         # Acceleration measurements [X, Y, Z]
-        self.raw_acc = array('f', [0, 0, 0])
+        self.raw_acc = array('f', [-1, -1, -1])
 
         # Scaled (converted to real units) measurement arrays
-        self.scaled_strain = array('f', [0, 0, 0, 0, 0, 0])
-        self.scaled_env = array('f', [0, 0, 0, 0])
-        self.scaled_acc = array('f', [0, 0, 0])
+        self.scaled_strain = array('f', [-1, -1, -1, -1, -1, -1])
+        self.scaled_env = array('f', [-1, -1, -1, -1])
+        self.scaled_acc = array('f', [-1, -1, -1])
 
         self.packet = packet
 

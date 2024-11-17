@@ -1,6 +1,11 @@
 # PyIPR Sensor Lib
 
 Python library for IPR strain sensor.
+## Requirements
+* pyserial
+  * Used to communicate with the strain sensor through a USB COM Port. 
+* Matplotlib (Optional)
+  * Used to plot the sensor data in the ```example_03_print_realtime_from_serial.py```
 
 ## Getting Started
 The code below can be used as a first example to explore the sensor capabilities. Use the file ```example_02_plot_data_from_file.py``` in the Examples folder to get started.
@@ -38,7 +43,6 @@ for _telegram in telegram_list:
             environment_list[3].append(ipr_obj.get_environment(ipr_obj.ENVIRONMENT_TEMP))  # Get Temperature
 ```
 Using Matplotlib, the strain, acceleration, or environment values can be plotted. Below is an example of strain XYZ being plotted:
-<!-- ![Graph](Examples/example_02_strain_graph.png ) -->
 <p align="center">
   <img src="Examples/example_02_strain_graph.png" alt="Strain graphs using binary_data_example_01.bin" width="600" >
 </p>

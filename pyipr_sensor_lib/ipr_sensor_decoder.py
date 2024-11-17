@@ -1,6 +1,4 @@
-import regex as re
 from pyipr_sensor_lib.ipr_parser import *
-import binascii
 
 
 class IPRSensorDecoder:
@@ -231,7 +229,10 @@ class IPRSensorDecoder:
             float: Strain value for specified axis, or -1 if invalid axis
         """
         if axis in range(0, 3):
-            return self.ipr_parser_obj.parser_scale_strain_xyz()[axis]
+            if scaled:
+                return self.ipr_parser_obj.parser_scale_strain_xyz()[axis]
+            else:
+                return self.ipr_parser_obj.parser_get_strain()[axis]
         else:
             return -1
 
@@ -247,7 +248,10 @@ class IPRSensorDecoder:
             float: Acceleration value in G forces for specified axis, or -1 if invalid axis
         """
         if axis in range(0, 3):
-            return self.ipr_parser_obj.parser_scale_acceleration()[axis]
+            if scaled:
+                return self.ipr_parser_obj.parser_scale_acceleration()[axis]
+            else:
+                return self.ipr_parser_obj.parser_get_acceleration()[axis]
         else:
             return -1
 
@@ -263,7 +267,10 @@ class IPRSensorDecoder:
             float: Environmental measurement for specified sensor, or -1 if invalid sensor
         """
         if axis in range(0, 4):
-            return self.ipr_parser_obj.parser_scale_environment()[axis]
+            if scaled:
+                return self.ipr_parser_obj.parser_scale_environment()[axis]
+            else:
+                return self.ipr_parser_obj.parser_get_environment()[axis]
         else:
             return -1
 
